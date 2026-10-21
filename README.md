@@ -77,41 +77,53 @@ These distinctions are provisional and will be tested against real posts during 
 
 ## Label Taxonomy
 
-<!-- Each label: a one-sentence definition and two real examples from your
-     reading. Then your decision rule for the hardest boundary.
+### `technique`
 
-     The decision rule is worth a point on its own and it's the thing most
-     people leave out. Every taxonomy has a hardest boundary. Name yours. -->
-
-### `label_one`
-
-**Definition:**
+**Definition:** The author primarily asks how to perform or improve a cooking method, including preparation, cooking, or reheating.
 
 **Example 1:**
->
+> Maintaining Crispier Tofu — The author asks how to keep tofu crispy after adding gochujang sauce.
 
 **Example 2:**
->
+> Make-ahead short ribs — The author asks how to cook and reheat short ribs without overcooking them.
 
-### `label_two`
+### `recipe_troubleshooting`
 
-**Definition:**
+**Definition:** The author primarily asks why an unexpected cooking result occurred or how to diagnose or fix it.
 
 **Example 1:**
->
+> Making sago and it turned out bitter — The author asks why the sago became bitter and whether the flavor can be fixed.
 
 **Example 2:**
->
+> Why does my homemade hollandaise keep splitting even when I follow temperature rules? — The author asks why the sauce repeatedly separates despite following standard techniques.
+
+### `equipment`
+
+**Definition:** The author primarily asks about choosing or using cookware, appliances, or other cooking tools, rather than diagnosing an unexpected result in the food.
+
+**Example 1:**
+> What material of pan to choose? — The author wants help selecting cookware that suits their cooking needs and preferences.
+
+**Example 2:**
+> My Breville Smart Oven is smarter than me — how to use the Breville Air Fryer Pro? — The author asks how to operate a specific appliance and adjust cooking instructions for it.
+
+### `ingredient`
+
+**Definition:** The author primarily asks about an ingredient's properties, role, selection, storage, preservation, or substitution in a dish.
+
+**Example 1:**
+> Ways to keep chopped peppers from going bad too quickly? — The author asks how to preserve cut peppers and prevent spoilage.
+
+**Example 2:**
+> What difference does lime juice make in biscotti (not just zest) — should I skip it? If I skip it, should I also remove the baking soda? — The author asks what role lime juice plays in the recipe and whether removing it would affect the need for baking soda.
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `ingredient` and `recipe_troubleshooting`
 
 **The decision rule I used every time:**
-<!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
-     if the tone is heated." -->
 
-
+Classify a post by the primary problem the author wants to solve, not simply by the ingredient, equipment, or method mentioned. If the author reports an actual unexpected cooking result and asks why it happened or how to fix it, use `recipe_troubleshooting`, even when ingredients, equipment, or technique are discussed. If there is no actual failure to diagnose, use `equipment` for equipment selection or use, `ingredient` for ingredient properties or substitutions, and `technique` for how to perform a cooking method.
 
 ---
 
