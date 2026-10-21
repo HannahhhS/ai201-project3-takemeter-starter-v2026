@@ -99,7 +99,7 @@ These distinctions are provisional and will be tested against real posts during 
 
 ### `equipment`
 
-**Definition:** The author primarily asks about choosing or using cookware, appliances, or other cooking tools, rather than diagnosing an unexpected result in the food.
+**Definition:** The author primarily asks about choosing or using or troubleshooting cookware, appliances, or other cooking tools, rather than diagnosing an unexpected result in the food.
 
 **Example 1:**
 > What material of pan to choose? — The author wants help selecting cookware that suits their cooking needs and preferences.
@@ -109,7 +109,7 @@ These distinctions are provisional and will be tested against real posts during 
 
 ### `ingredient`
 
-**Definition:** The author primarily asks about an ingredient's properties, role, selection, storage, preservation, or substitution in a dish.
+**Definition:** The author primarily asks about an ingredient's properties, role, selection, storage, behavior, preservation, or substitution in a dish.
 
 **Example 1:**
 > Ways to keep chopped peppers from going bad too quickly? — The author asks how to preserve cut peppers and prevent spoilage.
@@ -119,11 +119,15 @@ These distinctions are provisional and will be tested against real posts during 
 
 ### The hardest boundary
 
-**Which two labels:** `ingredient` and `recipe_troubleshooting`
+**Which two labels:** `technique` and `recipe_troubleshooting`
 
 **The decision rule I used every time:**
 
-Classify a post by the primary problem the author wants to solve, not simply by the ingredient, equipment, or method mentioned. If the author reports an actual unexpected cooking result and asks why it happened or how to fix it, use `recipe_troubleshooting`, even when ingredients, equipment, or technique are discussed. If there is no actual failure to diagnose, use `equipment` for equipment selection or use, `ingredient` for ingredient properties or substitutions, and `technique` for how to perform a cooking method.
+<!-- Classify a post by the primary problem the author wants to solve, not simply by the ingredient, equipment, or method mentioned. If the author reports an actual unexpected cooking result and asks why it happened or how to fix it, use `recipe_troubleshooting`, even when ingredients, equipment, or technique are discussed. If there is no actual failure to diagnose, use `equipment` for equipment selection or use, `ingredient` for ingredient properties or substitutions, and `technique` for how to perform a cooking method. -->
+
+**Decision rule:** Label posts according to the primary type of cooking help requested. Use `technique` for questions about cooking methods, process, timing, temperature, or how to achieve a desired result through a cooking method, even when the result was not as expected. Use `equipment` when the main concern is selecting, operating, or troubleshooting a cooking tool or appliance. Use `ingredient` for questions about ingredient properties, substitutions, or behavior. Use `recipe_troubleshooting` when the main concern is diagnosing or recovering from an unexpected result in the finished food or recipe. When categories overlap, prioritize the post's primary concern rather than automatically assigning every reported problem to `recipe_troubleshooting`.
+
+**Why I revised the rule:** My first rule (kept above as a comment) sent every post that reported a failure to `recipe_troubleshooting`. When I applied it, that label grew to about a third of the dataset and absorbed posts whose real question was about a method ("how do I get crispy salmon skin?") or an ingredient ("why does my gelatin smell?"). The revised rule labels each post by the primary kind of help requested. My 20 cold labels were made under the first rule and I left them unchanged.
 
 ---
 
@@ -133,18 +137,21 @@ Classify a post by the primary problem the author wants to solve, not simply by 
      cases. -->
 
 **Where the posts came from:**
+I collected 200 posts from the public r/AskCulinary community using a Claude script that retrieved posts through its public search RSS feed. The dataset covers four cooking-help categories: technique, recipe troubleshooting, equipment, and ingredients.
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
+I labelled the first 20 posts myself without looking at AI suggestions or the original post flairs. For the remaining 180 posts, Claude generated initial labels using my taxonomy and decision rule. I then reviewed the posts and corrected labels where they did not match my definitions. The original post flairs were used for initial collection and organization, not treated as ground-truth labels.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| technique | 61 | 30.5% |
+| equipment | 50 | 25.0% |
+| recipe_troubleshooting | 45 | 22.5% |
+| ingredient | 44 | 22.0% |
+| **Total** | 200 | 100% |
 
 **Three hard cases**
 
@@ -152,25 +159,25 @@ Say so plainly — the disclosure is required, not penalised. -->
      been, and what you chose. These are worth more than the easy 190. -->
 
 **1.**
-> *The post:*
+> *The post:* "Why does my pan-seared chicken breast turn dry even though I follow the recipe? … Despite this, the chicken often ends up dry and tough instead of juicy. I'm trying to understand what's going wrong—heat level, timing, thickness, or something else?"
 >
-> *Could have been:*
+> *Could have been:* `technique` or `recipe_troubleshooting`
 >
-> *I chose, because:*
+> *I chose, because:* `technique`. It reports a bad result and asks "what's going wrong," which reads like troubleshooting. But every cause the author is asking about (heat, timing, thickness) is a method variable, and my rule puts timing and temperature under `technique` even when the result was not as expected. There is no batch to rescue; the author wants to cook it right next time.
 
 **2.**
-> *The post:*
+> *The post:* "Yorkshire pudding won't rise in my oven—same recipe works fine at friend's house. … I'm checking my oven against an oven thermometer now, set at 450° … consistently showing about 470°. … My husband replaced one of the elements within the last few years. Could he have inadvertently recalibrated the thermostat?"
 >
-> *Could have been:*
+> *Could have been:* `recipe_troubleshooting` or `equipment`
 >
-> *I chose, because:*
+> *I chose, because:* `equipment`. On the surface it is a failed recipe, but the same recipe works in a friend's oven, so the recipe isn't the problem. The author has already traced it to the oven running hot and ends by asking about the thermostat, which is troubleshooting an appliance.
 
 **3.**
-> *The post:*
+> *The post:* "Gross gelatin smell. … I've been trying my hand at homemade jelly goods and I cannot get over how gross they smell! Its because of the gelatin, it has a very distinct and strong barnyard smell. I originally believed it would be gone by the final product but nope! … How can I fix this?"
 >
-> *Could have been:*
+> *Could have been:* `ingredient` or `recipe_troubleshooting`
 >
-> *I chose, because:*
+> *I chose, because:* `ingredient`. The finished food came out wrong, which pulls toward troubleshooting, but the author has already named the cause: the gelatin's own smell. The real question is how that ingredient behaves and how to deal with it, which my rule puts under `ingredient`. Under my first decision rule this post was `recipe_troubleshooting`; revising the rule is what moved it.
 
 ---
 
