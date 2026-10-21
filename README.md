@@ -37,6 +37,35 @@
 
 <!-- ═══════════════════════ UNIT 5 — THE BUILD ═══════════════════════ -->
 
+# Milestone 1: Community and Candidate Distinctions
+
+## Community
+**r/AskCulinary** — a public cooking community where users ask questions about cooking techniques, recipes, ingredients, and kitchen equipment.
+
+## Candidate Distinctions
+
+1. **Technique:** The author primarily wants to know how to perform a cooking method or carry out a specific cooking action.
+
+2. **Recipe troubleshooting:** The author wants to understand or fix an unexpected result during cooking or baking.
+
+3. **Equipment:** The author primarily asks about choosing, using, or troubleshooting kitchen tools and appliances.
+
+4. **Ingredient:** The author primarily asks about an ingredient's properties, selection, substitution, or suitability for a dish.
+
+## What makes some posts more substantial than others
+
+Topic tells me what a post is about. Reading the posts, the bigger difference was how much context the author gives:
+
+1. **The recipe is included.** Some troubleshooting posts include the full recipe they followed. Others only describe what went wrong.
+2. **The equipment is specific.** The stronger posts name the type of equipment, the brand, or where it was bought. Weaker ones just say "my pan" or "my oven."
+3. **The recipe comes later.** Some posts don't give the recipe at the start and add it further down.
+4. **The current method is described.** Technique questions in the stronger posts explain how the author does it now, so readers can see what to change.
+
+## Initial Labeling Rule
+Classify each post according to its primary question. If the author is asking why something went wrong or how to fix an unexpected result, use `recipe_troubleshooting`. Otherwise, use the label that best matches the main subject of the question.
+
+These distinctions are provisional and will be tested against real posts during labeling.
+
 ## What This Does
 
 <!-- Your community, and what your classifier sorts posts into. Three or four
