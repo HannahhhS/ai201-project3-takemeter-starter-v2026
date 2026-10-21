@@ -71,6 +71,8 @@ These distinctions are provisional and will be tested against real posts during 
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
+TakeMeter sorts questions from r/AskCulinary, a public cooking help community, by the kind of help the poster needs. Each post gets one of four labels: `technique` (how to do a cooking method), `recipe_troubleshooting` (why a dish went wrong, or how to rescue it), `equipment` (choosing, using or fixing a tool) or `ingredient` (what an ingredient does, how to store it, or what to substitute). The classifier is DistilBERT fine-tuned on 200 posts I labelled myself. The hardest line it has to learn is between `technique` and `recipe_troubleshooting`, because many posts describe a failure but are really asking how to do the method right.
+
 
 
 ---
@@ -129,6 +131,8 @@ These distinctions are provisional and will be tested against real posts during 
 
 **Why I revised the rule:** My first rule (kept above as a comment) sent every post that reported a failure to `recipe_troubleshooting`. When I applied it, that label grew to about a third of the dataset and absorbed posts whose real question was about a method ("how do I get crispy salmon skin?") or an ingredient ("why does my gelatin smell?"). The revised rule labels each post by the primary kind of help requested. My 20 cold labels were made under the first rule and I left them unchanged.
 
+**Stretch Point: Why I added a fourth label:** The first three labels—`technique`, `recipe_troubleshooting`, and `equipment`—did not adequately cover posts asking about ingredient properties, substitutions, and ingredient behavior independently of a cooking method or equipment issue. I added `ingredient` to capture these questions rather than forcing them into a category that did not fit.
+
 ---
 
 ## The Dataset
@@ -182,18 +186,46 @@ I labelled the first 20 posts myself without looking at AI suggestions or the or
 ---
 
 ## The Training Run
-
+device: cpu  (CPU)
+torch:  2.14.1+cpu
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
 **Base model:**
+BASE_MODEL = "distilbert-base-uncased"
+
+
+
 
 **Settings:** <!-- epochs, learning rate, batch size, seed -->
+EPOCHS = 3
+LEARNING_RATE = 2e-5
+BATCH_SIZE = 16
+SEED = 42
 
 **Anything I changed from the defaults, and why:**
+nothing was changed from the defaults. 
 
-**Split sizes:** <!-- train / val / test, and per-label counts in the test
-split. If a label had fewer than about 8 in test, say so — it explains a lot
-of next unit's variance. -->
+**Split sizes:** <!-- train / val / test, and per-label counts in the test split. If a label had fewer than about 8 in test, say so — it explains a lot of next unit's variance. -->
+
+train 139  ·  val 31  ·  test 30
+
+                        train  val  test
+label                                   
+technique                  43    9     9
+recipe_troubleshooting     31    7     7
+equipment                  35    8     7
+ingredient                 30    7     7
+
+[note] 'recipe_troubleshooting' has only 7 examples in the test split.
+[note] 'equipment' has only 7 examples in the test split.
+[note] 'ingredient' has only 7 examples in the test split.
+
+A metric computed on that few examples moves a lot between seeds.
+Write that down now — next unit it's a diagnosis, not a surprise.
+
+
+
+
 
 
 
@@ -210,17 +242,19 @@ of next unit's variance. -->
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I gave Claude my five acceptance criteria and asked whether each one could be checked by someone who couldn't ask me what I meant. I told it not to suggest numbers.
+- *What came back:* Criteria 1–3 were checkable. Criterion 4 wasn't: it didn't say who the "independent reviewer" was or which 30 posts they would label. Criterion 5 asked about predictions with confidence ≥ 0.80, but the notebook doesn't record per-post confidence — it only reports accuracy for the most and least confident thirds.
+- *What I changed:* I rewrote criterion 4 so another person labels 30 randomly selected posts using only my README definitions and decision rule. I rewrote criterion 5 to use what the notebook actually reports: the most confident third must reach at least 0.75 accuracy across all three seeds. The numbers stayed mine.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* I had Claude pre-label 180 posts using my definitions and my first decision rule, which sent every post that reported a failure to `recipe_troubleshooting`.
+- *What came back:* `recipe_troubleshooting` came out at 67 of 200 (34%), and it had absorbed posts that were really about how to do something ("how do I get crispy salmon skin?") or about an ingredient (gelatin's smell). Claude also flagged hard cases where my rule allowed two answers.
+- *What I changed:* I rewrote the decision rule to label by the primary kind of help requested, and moved my hardest boundary to `technique` vs `recipe_troubleshooting`. Claude relabelled 20 rows under the new rule; I then reviewed every row and changed more myself — the dry chicken breast post to `technique` and the Yorkshire pudding post to `equipment`.
 
 **Pre-labelling disclosure:**
+
+Posts were collected with a Claude-written script from r/AskCulinary's public search RSS, 50 per post flair. Flairs were used only to balance collection, not as labels. I labelled 20 posts cold (marked `cold` in the note column). Claude pre-labelled the other 180 using my definitions — first under my original decision rule, then again under the revised one — and I read and corrected every one (marked `pre-labelled by AI (Claude), checked`).
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
