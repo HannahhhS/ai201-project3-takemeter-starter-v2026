@@ -50,66 +50,43 @@ whether you hit them:
   Pick with that in mind — it is stricter than it first sounds.
 
 ---
+## 1. Overall Accuracy
 
-## 1.
+The classifier should achieve at least 0.70 accuracy on the held-out test set across all three random seeds.
 
-<!-- Your criterion. It must name a number. -->
-
-
-
-**Why this target:**
-
-
+**Why this target:** Four labels make random guessing a weak baseline, and 0.70 would mean the classifier correctly labels a useful majority of posts. Testing three seeds helps show whether performance is reasonably stable.
 
 ---
 
-## 2.
+## 2. Per-Label Performance
 
-<!-- Your criterion. -->
+Each of the four labels should achieve an F1 score of at least 0.50 on the held-out test set across all three seeds.
 
-
-
-**Why this target:**
-
-
+**Why this target:** My labels overlap in real cooking questions, especially `ingredient` versus `recipe_troubleshooting`. I want to avoid a classifier that performs well overall while failing to recognize one of these categories. The minimum is deliberately lower than the overall accuracy target because smaller labels will have fewer test examples and noisier scores.
 
 ---
 
-## 3.
+## 3. Class Balance
 
-<!-- Your criterion. -->
+No label should account for more than 60% of the labeled dataset.
 
-
-
-**Why this target:**
-
-
+**Why this target:** My decision rule gives `recipe_troubleshooting` priority when a post describes an actual unexpected cooking result. This could make that label disproportionately large. A 60% cap encourages enough examples of `technique`, `equipment`, and `ingredient` for the classifier to learn their distinctions.
 
 ---
 
-## 4.
+## 4. Labeling Consistency
 
-<!-- Your criterion. -->
+If another person independently labeled the same 30 randomly selected posts using my README's label definitions and decision rule, their labels should match mine on at least 80% of the posts.
 
-
-
-**Why this target:**
-
-
+**Why this target:** Several posts mention multiple topics, so my primary-problem rule needs to be clear enough for another person to apply consistently. Checking 30 posts provides a practical way to identify confusing boundaries without reviewing the entire dataset twice. The ingredient and recipe_troubleshooting labels can overlap, so this target reflects my goal of writing clear enough definitions for another person to apply them consistently.
 
 ---
 
-## 5.
+## 5. Confidence
 
-<!-- Your criterion. -->
+Across all three random seeds, the most confident third of predictions should achieve at least 0.75 accuracy on the held-out test set.
 
-
-
-**Why this target:**
-
-
-
----
+**Why this target:** My taxonomy has overlapping categories, especially ingredient and recipe_troubleshooting. I want the model's strongest predictions to be correct at least 75% of the time, showing that its confidence can help distinguish predictions that are more likely to be reliable.
 
 <!-- ─────────────────────────────────────────────────────────────────────────
      UNIT 6 — read this before you change anything above.

@@ -5,6 +5,7 @@
 #
 # Delete the examples below and put yours in.
 
-analysis: makes an argument backed by a specific, checkable fact
-hot_take: a confident claim with no support offered
-reaction: an immediate response to something that just happened
+technique: The author primarily asks how to perform or improve a cooking method, including preparation, cooking, or reheating.
+recipe_troubleshooting: The author primarily asks why an unexpected cooking result occurred or how to diagnose or fix it.
+equipment: The author primarily asks about choosing or using cookware, appliances, or other cooking tools, rather than diagnosing an unexpected result in the food.
+ingredient: The author primarily asks about an ingredient's properties, role, selection, storage, preservation, or substitution in a dish.
