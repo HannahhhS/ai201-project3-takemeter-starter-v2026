@@ -297,6 +297,26 @@ Posts were collected with a Claude-written script from r/AskCulinary's public se
 <!-- Five criteria across three seeds. The notebook's section 6 prints the
      spread table; the Target and Verdict columns are yours. -->
 
+Device:
+device: cpu  (CPU)
+torch:  2.14.1+cpu
+
+Seed results:
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.300 | 0.300 | 0.367 | 0.067 |
+| Macro F1 | 0.115 | 0.115 | 0.233 | 0.117 |
+| F1 — `technique` | 0.462 | 0.462 | 0.486 | 0.025 |
+| F1 — `recipe_troubleshooting` | 0.000 | 0.000 | 0.000 | 0.000 |
+| F1 — `equipment` | 0.000 | 0.000 | 0.444 | 0.444 |
+| F1 — `ingredient` | 0.000 | 0.000 | 0.000 | 0.000 |
+
+Accuracy moved 0.067 across seeds. Enough that a criterion landing within that band can't really be called either way.
+
+Accuracy varied from 0.300 to 0.367, a spread of 0.067 (6.7 percentage points). Macro F1 varied by 0.117. The equipment F1 score changed substantially across seeds, from 0.000 to 0.444, while recipe_troubleshooting and ingredient remained at 0.000 for all three seeds. This suggests that performance is sensitive to the random seed for some labels, and the model consistently struggles with others.
+
+     
+
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
 | 1.  |  |  |  |  |  |
@@ -310,16 +330,26 @@ Posts were collected with a Claude-written script from r/AskCulinary's public se
 <!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
      An image of a matrix earns nothing. -->
 
-| true \ predicted |  |  |  |
-|---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| true \ predicted | technique | recipe_troubleshooting | equipment | ingredient |
+|---|---|---|---|---|
+| **technique** | 9 | 0 | 0 | 0 |
+| **recipe_troubleshooting** | 7 | 0 | 0 | 0 |
+| **equipment** | 7 | 0 | 0 | 0 |
+| **ingredient** | 7 | 0 | 0 | 0 |
+
+Biggest confusion: 7 real `recipe_troubleshooting` posts called `technique`.
+The other direction: 0 real `technique` posts called `recipe_troubleshooting`.
+
+That's lopsided — the model leans toward `technique` on this pair.
+A direction like that usually points at your labelling rather than the
+model. Your agreement report is the thing that can tell you which.
 
 **My biggest off-diagonal number, and what it means:**
 <!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
      direction. "7 real analysis posts were called hot_take and only 3 went the
      other way" is a direction, not just an error rate. -->
+
+     My biggest off-diagonal number is 7: all seven real `recipe_troubleshooting` posts were predicted as `technique`, while zero real `technique` posts were predicted as `recipe_troubleshooting`. This shows a one-way confusion between these categories, with the model favoring `technique`. More broadly, the model predicted `technique` for every test post, so it failed to distinguish any of the other three labels.
 
 
 
