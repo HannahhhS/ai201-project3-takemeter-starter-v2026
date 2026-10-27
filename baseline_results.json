@@ -1,0 +1,190 @@
+{
+  "model": "facebook/bart-large-mnli",
+  "n": 30,
+  "seed": 42,
+  "held_out": true,
+  "used_definitions": true,
+  "scores": {
+    "n": 30,
+    "accuracy": 0.43333333333333335,
+    "f1_macro": 0.3543290043290043,
+    "per_label": {
+      "equipment": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 7
+      },
+      "ingredient": {
+        "precision": 0.4666666666666667,
+        "recall": 1.0,
+        "f1": 0.6363636363636364,
+        "support": 7
+      },
+      "recipe_troubleshooting": {
+        "precision": 0.6666666666666666,
+        "recall": 0.2857142857142857,
+        "f1": 0.4,
+        "support": 7
+      },
+      "technique": {
+        "precision": 0.3333333333333333,
+        "recall": 0.4444444444444444,
+        "f1": 0.380952380952381,
+        "support": 9
+      }
+    }
+  },
+  "predictions": [
+    {
+      "text": "What is the difference between thai and Indian tamarind paste? While making Chole(chickpeas) curry i used indian tamarind (imli) chutney and it made the curry sweet. Apparently we are supposed to use soaked tamarind because chutneys are usually sweetened. Can thai tamarind paste be used (cheaper) or is it different in taste.",
+      "gold": "ingredient",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "How far in advance can I salt eggplant? I've found a really good recipe for eggplant parmesean, and I've made it twice now. The problem I'm having is that it takes so long to make between salting and oven time that I've spent 2-3 hours in the kitchen. I just don't have that kind of time most days. It would be easier if I could salt the eggplant earlier in the day so that it's ready to go before I actually need to start dinner. I'm worried about it affecting the texture and taste, though. Currently, the recipe calls for letting it sit for 60 minutes with the salt before rinsing and then patting dry for the next steps. Could I let it salt for several hours and then rinse. Or could I salt and rinse ahead and store it in the fridge for later? Thanks in advance.",
+      "gold": "technique",
+      "predicted": "technique"
+    },
+    {
+      "text": "Pupusas: better to freeze raw or cooked? I need to use up a bag of masa, decided to make pupusas and freeze them. Would it be better to freeze pupusas before or after cooking? Or even par-cooked?",
+      "gold": "technique",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Vanilla beans smell. Hi, I bought a pack of 7 vanilla beans from amazon. They are Madagascar Bourbon Vanilla Beans \"Grand Cru d'Exception\", with an oily skin and soft texture, but my concern is their smell. I haven't cut them yet, but they smells woody, smoky and like tobacco, they don't have any vanilla fragrance whatsoever. Is this normal? I don't see any sign of mold or defects.",
+      "gold": "ingredient",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Stainless steel no longer shiny. Hello I recently purchased this stainless steel pan which I use in an induction hob. Unfortunately, it\u2019s now got this purple tint on it alongside a white stain which won\u2019t come off! I think the stain may be from me putting tap water on a hot pan when testing whether it was hot enough. How do I return it as close to new as possible. https://imgur.com/a/oMnGFm9",
+      "gold": "equipment",
+      "predicted": "recipe_troubleshooting"
+    },
+    {
+      "text": "Need help finding restaurant yakisoba/hibachi noodles. I\u2019m looking for the noodles that restaurants use for yakisoba or hibachi (especially takeout hibachi places). They\u2019re usually chewy, very yellow, and thick. None of my local grocers or Asian markets around me seem to stock anything like this, from what I can tell. The yakisoba noodles from Maruchan look right except that they look too thin. I know they\u2019re not udon as that is too thick. Anyone know a brand I could look for or something? Even if I have to buy a box of like 30 frozen servings wholesale I don\u2019t care, I just need to know the brand that these places are using. Thanks! Edit: I live in the Midwest US.",
+      "gold": "ingredient",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Made my Cajun rice too spicy. I used this recipe (https://www.lecremedelacrumb.com/cajun-shrimp-and-rice-skillet/#wprm-recipe-container-25373) to make a Cajun rice dish. Instead of making my own Cajun seasoning mix, I used a premade one. I unfortunately put way too much seasoning, and it\u2019s way too spicy! I\u2019ve already made more rice and added it in. It helped a little, but I\u2019d still like to take away some spice. Is there a way to fix it? Is there a good way to incorporate cream/something else?",
+      "gold": "recipe_troubleshooting",
+      "predicted": "technique"
+    },
+    {
+      "text": "Help! Fix my salsa negra. My salsa negra tastes ok at first, but then has this really long pronounced bitter aftertaste. Ive tried adding additional salt, sugar, and ACV to help balance it. It's improved a little bit, but there's still this bitter taste (I wouldn't say acrid) that lingers. Doing some rough searching I may have over charred the peppers? They were black, but I made sure none of them turned gray/ashy. Any tips on how to save this? Or if it's beyond salvageable this time, any tips for next time? This was my process: 9 dried guajillo chiles 5 dried ancho chiles 3 morita or chipotle chiles 1 whole head garlic (cloves separated, unpeeled) 1/2 white onion 1/2 cup neutral oil 3 tbsp apple cider vinegar 2 tbsp piloncillo or dark brown sugar 3 tsp salt Water to thin Char the peppers on a dry carbon steel pan until black, soak for about 15min in warm water, char the garlic and onion, blend everything together",
+      "gold": "recipe_troubleshooting",
+      "predicted": "technique"
+    },
+    {
+      "text": "Can a stainless steel pot replace a dutch oven for chuck roast? I am making barbacoa and i was planning on browning the meat on the stove (stainless steel) and then putting it with broth in the oven for a couple hours but the recipe i found uses a dutch oven. would i still get the same result with stainless steel? i\u2019m new to some of this so im still learning",
+      "gold": "equipment",
+      "predicted": "technique"
+    },
+    {
+      "text": "How much food do I prepare when serving my family? We're hosting breakfast the day after Christmas, and I'm having some trouble figuring out how much food to make. It's going to be 8 adults and 8 children. I'm planning on the following; 1 French toast casserole - the recipe feeds 6 1 breakfast casserole - the recipe feeds 6 Bacon Fruit salad - the recipe feeds 6 At first I thought I would make enough of each to feed 16 people but then my wife mentioned not everyone is going to eat everything. But I'm afraid of not having enough. When you're cooking for a group, how do you know you're going to have enough food without having a ton of leftovers that get thrown out?",
+      "gold": "recipe_troubleshooting",
+      "predicted": "technique"
+    },
+    {
+      "text": "Crispy crust banana bread made with mayo. I tried making a mayonnaise banana bread in NOT my kitchen one time but I ended up having to use a toaster oven because the oven was having issues. The resulting banana bread had a beautifully crispy crust which I imagine was because of the close proximity to the heating elements turning on and off. Is there anyway I could recreate this in a regular oven? I tried to do some broiling one time and just burned the shit out of it. Otherwise I'm seriously considering just buying a big ass toaster oven and just trying that. Not sure of the recipe I used because this was in 2019 but it was probably something like this. \u2022 250 g (about 3 large or 1.5 cups) very ripe mashed bananas \u2022 200 g (about 1 packed cup) brown sugar \u2022 1/2 cup (115 g) real mayonnaise \u2022 1 large room-temperature egg \u2022 1 tsp vanilla extract \u2022 220 g (1.5 cups) all-purpose flour \u2022 2 tsp baking powder (or 1 tsp baking soda) \u2022 1/2 tsp salt \u2022 1/2 tsp ground cinnamon (optional) Mix wet, mix dry, combine with as little mixing as possible and bake at 350 in a loaf pan.",
+      "gold": "technique",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Stainless steel Demeyere pan cleaning. Good day, Yesterday, we used our new pan for the first time. I realize now that the pan was likely not hot enough because the water sizzled but didn\u2019t \"dance\", which I learned after watching several YouTube videos. We prepared a dish called menemen, using 500g of minced meat and six eggs. During cooking, the bottom of the pan became slightly sticky, but with some water and the moisture from the sauce, it cleaned up while cooking. Toward the end, we added two raw eggs on top and let it sit with the lid on for 5/10 minutes. After finishing the dish, we noticed the bottom looked like the attached picture. Here\u2019s what we tried: Boiled water with vinegar and one packet of baking soda for 20 minutes, then let it sit for an hour. this helped somewhat. Repeated the same process, this time boiling for 30 minutes on low heat and soaking overnight. The result was much improved, but not fully clean. Did we do something wrong, or is this normal for a first use? I\u2019ve also ordered Bar Keepers Friend Cookware Cleaner, which hasn\u2019t arrived yet. Will that help? And is it safe to use regularly? I\u2019m still learning and would appreciate any advice. Thank you. Kind regards",
+      "gold": "equipment",
+      "predicted": "technique"
+    },
+    {
+      "text": "Carbonara Pizza. Hi, I made a carbonara pizza. Instead of a red sauce I made an egg and cheese slurry as my sauce and garnished with some fried bacon. During the cooking process, of course the egg cooked and just turned into baked eggs on bread. I\u2019m wondering what I could do to keep the sauce in a slurry state while cooking in a pizza oven. Do I cook the pizza dough, then add the sauce halfway through the cook? What would you do?",
+      "gold": "technique",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Improve Thickness of NB Oreo Pie. I want my no bake oreo cream pie to have a thicker consistency. The result was a thick pudding texture, but I\u2019d like for it to have more of a fudge or cheesecake type of thickness. I used: 8 ounces of heavy cream (whipped until extra thick) 1 block of softened cream cheese 3 tablespoons of marshmallow fluff Powdered sugar (to taste) After mixing, I tossed in a half sleeve of crumbled Oreos and then poured it onto an Oreo crust. Refrigerated overnight. Added more crumbled Oreos for the topping. Taste-wise, it was very good. Wife wants me to make it for Thanksgiving, but I would like to improve on thickness without losing flavor.",
+      "gold": "technique",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Lamb chop temperature. I am marinading lamb chops with pepper, white pepper, thyme, garlic and salt. Do I marinade the lamb chops at room temperature, pop them back into the fridge? Or marinade them when cold? Thanks in advance.",
+      "gold": "technique",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Can Tripe be substituted? I am interested in trying out this recipe and am wondering if and how the Tripe could be substituted: (I know that the Tripe is the main ingredient of this dish, but I can\u2019t get any, where I live.) TRIPE \u00c0 LA CREOLE This tripe stew was widely served in New Orleans in the nineteenth century; it is still prepared at home today. The tripe is simmered in a courtbouillon enriched with beel stock until tender, then added to the sauce and cooked a bit longer. Cleaned, partily precooked tripe is avalable in many of the better markets across the country, and shortens preparation time considerably. Don't overcook the tripe; it should have a pleasant chewy texture. Serve with boiled rice to soak up the heady sauce. (for 4) COURTBOUILLON 3 qt. water, approximately 1 tsp. cayenne 1\u2154 Tbs. salt \u00bc tsp. finely minced garlic 1 Tbs. white wine vinegar 2 Tbs. rich beef stock (if you have none \u00bd/ onion, cut into quarters on hand use beef concentrate) \u00bd2 tsp. freshly ground black pepper 2\u00bd to 3 lb. honeycomb tripe 2 Tbs. salt butter 2 medium-sized onions, sliced (about 3 \u0441.) \u00bd c. chopped green pepper \u00be tsp. finely minced garlic \u00bd2 c. finely chopped seasoning ham (about \u00bc lb.) 2 whole bay leaves, crushed SAUCE 2 Tbs. minced fresh parsley 1 tsp. dried thyme 1\u00be tsp. salt \u00be tsp. freshly ground black pepper 1 tsp. cayenne \u00bc tsp. dried basil 2 one-lb. cans peeled whole tomatoes, undrained Boiled Rice (page 17) In a heavy 5- to 6-quart saucepan, combine the ingredients for the courtbouillon. Bring to a boil over high heat, then add the tripe. Reduce the heat to low and cook for 2 to 3 hours, or until the tripe is tender. Meanwhile, in another heavy saucepan about 4 to 5 quarts in capacity melt the butter over low heat. Add the sliced onions and saut\u00e9 until soft, then add all the other ingredients except the tripe. Continue saut\u00e9ing for 20 minutes more, stiring frequently. Remove the tripe from the courtbouillon and drain: Allow to cool slightly before handling, then cut into pieces about 2 inches long and \u00bd inch wide. Add to the pan with the sauce, cover, and cook the tripe in the sauce for 25 minutes. Serve with boiled rice.",
+      "gold": "ingredient",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Help. Decided to hand mix brioche and I think im in over my head. Ingredients are miilk, eggs, butter, flour, salt, sugar, instant yeast. I worked in the butter gradually and now im at the stage where its basically somewhere between pancake batter and very wet bread dough. Its somewhat cohesive, but very sticky and has no strength. Recipes are telling me to put it in a stand mixer for 20 minutes - i dont have one of those. Is there a feasible way to hand mix this? If this was sourdough I would just give it a few folds every few half hour. Something tells me that wont exactly work here, maybe ill run out of time before the yeast ferments.",
+      "gold": "recipe_troubleshooting",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Feta completly stuck to the pan - why? I was following this recipe: https://www.instagram.com/p/Dbvw0hhmoRz Heat a small nonstick skillet over medium heat. Arrange the crumbled feta in a ring around the perimeter of the skillet. Immediately crack the egg into the center. Season with black pepper and red pepper flakes. Cover and cook, lowering the heat if necessary, until the egg white is set, the yolk remains soft, and the feta is deeply golden and crisp. I used ceramic pan, light feta and formed more of a circle with filled inside then ring from the cheese. As I tried to pick up my eggs from the pan I noticed it was impossible. - the cheese made it completly stuck to the pan. Now I have difficult to wash pan and not so good looking eggs. What could be the reason? Was the heat too high? Is feta light not fatty enough?",
+      "gold": "recipe_troubleshooting",
+      "predicted": "recipe_troubleshooting"
+    },
+    {
+      "text": "Puy lentils. I really want to experiment with puy lentils after watching Marco Pierre White's video where he makes them with pan fried cod. I don't think there are any stores in my area that carry them. Online I only see them for $15-$20 per pound which is pretty expensive for dried lentils. I know these are more expensive than your $2-3 per pound generic varieties but damn. What is a reasonable price for real puy lentils? Are there any reliable online retailers that sell them for a reasonable price? And lastly, how do \"French Green\" lentils hold up to the real deal?",
+      "gold": "ingredient",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Any way to get gluten free rice flour to work for mochi? Hii! I've been wanting to make mochi for a while, but the only thing i have available is some gluten free rice flour, and even that i picked up when i was visiting my dad in a different country. I'm really not able to travel to my country's capital, or 3 cities over at the least, to see if a big market chain has glutenous rice flour, it's just not worth it lol So i was wondering if there was anything that could be added with the gluten free rice flour, like idk corn starch or something, to help with binding/making the dough sticky? Or should i just give up and not waste bot my time and ingredients? Thanks in advance smart people of reddit",
+      "gold": "ingredient",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Can you make biko (filipino coconut sticky rice) in an air fryer? My oven broke and I didn\u2019t realize until after i make it. Can I put it in the air fryer to caramelize and finish cooking?",
+      "gold": "equipment",
+      "predicted": "technique"
+    },
+    {
+      "text": "Why is the pork still pink? I tried making some pork wontons. I steamed them for 20 minutes, but noticed the inside was pretty pink still (might be because I added chili oil to the filling but idk). I was a little nervous abt them being fully cooked, so I then boiled them for 10-15 minutes and they came out the same color. What\u2019s going on? Also I don\u2019t have a meat thermometer, but I\u2019m going to buy one soon!! Recipe for the filling: 1lb of ground pork Ground ginger Fine kosher salt Black pepper Oyster sauce Soy sauce Sesame oil Green onions Chili oil Cornstarch Splash of water Chicken bouillon",
+      "gold": "recipe_troubleshooting",
+      "predicted": "recipe_troubleshooting"
+    },
+    {
+      "text": "I tried these chicken tostadas in Monterrey Mexico that had chicken shredded so finely it was like snow - how could I shred chicken at home this fine? Here's a photo of what the chicken looks like for reference - https://i.imgur.com/kHdfStF.png I don't need the recipe of building the toastada, I just need to know how to shred my chicken this finely! It was amazing!",
+      "gold": "technique",
+      "predicted": "technique"
+    },
+    {
+      "text": "Rational Icombi Classic. Hi, looking to run a service on my rational Icombi Classic, can't calibrate the oven without the service codes, does anyone have a set of passwords/codes I can try to access the service section?",
+      "gold": "equipment",
+      "predicted": "technique"
+    },
+    {
+      "text": "Heat diffuser for a large pan. I rent a place with an old american gas stove/range. All four burners are of the same diameter (6 cm) and the maximum flame is around 10-11 cm wide. And the flame is intense. I get a hot spot even on my cast iron pan (bottom diameter 24 cm). The thin pans get strong hot spots super quickly and I manage to cook something without burning only on very low heat I started to look for a heat diffuser, which would allow to spread the flame/heat more evenly and not to loose to much heat as I am often cooking for a large family and the pans and pot are big and full. What would be the best material and size of the heat diffuser in my case? I read a lot about cast iron, aluminium, copper heat difdusers and got confused what would be the best option for me. Currently I am in Japan, but I am ready to order from US or Europe. Because now it a big discomfort to fight hot spot and burning stuff in the pan.",
+      "gold": "equipment",
+      "predicted": "technique"
+    },
+    {
+      "text": "how to use xanthan gum. I can't figure out how to get xanthan gum into things like sauces or salad dressings without it clumping up and becoming unusable. There's no recipe I can post to use as an example for this. I've tried it with brown and white sauces and in basic vinaigrettes to help emuslify. I've tried sifting it in, sprinkling in small amounts, using hot water. I always end up having to press the resulting gummy mess through a sieve to recover my efforts. I've got this whole thing of xanthan gum I can't use because I can't figure out how to use it!",
+      "gold": "ingredient",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "How to get both browned beef flavor and super tender ground beef? I want to make a chili where the ground beef has a very tender texture with very small pieces, think like the chili you get on a 7/11 chili dog or skyline chili where the beef almost melts into the liquid, but I still want the browned beef flavor from the Maillard reaction. How can I achieve this? When I try to do a sear on the beef it gets fairly tough even if I break up the pieces as best I can. I\u2019ve seen recipes for skyline chili where they boil the ground beef in broth or water but it seems like I\u2019d be missing out on the browning. And tips would be great! EDIT: Thanks everyone, i'll try the baking soda tip!",
+      "gold": "technique",
+      "predicted": "technique"
+    },
+    {
+      "text": "How to make breading stick to chicken? I've been using this homemade chicken tenders recipe for a while now, and it always tastes really good, but the breading tends to come off after I've eaten the first few. Any suggestions on how to improve? Recipe: pat chicken dry Remove tendons with a fork Marinate in fridge overnight with seasonings and a bit of oil Mix breading with more seasoning Mix chicken into breading. Cook in oven at 425 F for about 20 minutes or until internal temp of 165 F Make hot honey sauce in saucepan (just honey, hot sauce, garlic, and a spoonful of butter) Let tenders cool for a few minutes, dip in sauce, serve.",
+      "gold": "technique",
+      "predicted": "technique"
+    },
+    {
+      "text": "Stroganoff-added sour cream too early. Planned to make stroganoff in the slow cooker but put it off due to not getting it started early enough. Recipe is below. I've already mixed the sour cream into the soup and broth, but was supposed to add it at the end. Will it be okay or should I toss the mix I made? Not a huge loss, just hate to waste food. 1 can cream of mushroom 1 can beef broth 1 pound beef stew 1 cup sour cream 2 cups cooked noodles Combine soup and broth. Add meat. Cook on high 3-4 hours. Reduce to low and cook 3-4 hours. Stir in sour cream and noodles. Turn up to high and cook 20 minutes.",
+      "gold": "recipe_troubleshooting",
+      "predicted": "ingredient"
+    },
+    {
+      "text": "Guys I got this ISI syphon bottle but is it missing something? Guys I picked up this never used conny model 2223 syphon bottle at thrift store for $5. I want to try using it but I'm not sure if I have all the pieces. If you look at the fill tube there is no gasket there just two grooves on the top of the tube. Am I missing a gasket there? Or is this just a model without a gasket there? There is a button like rubber gasket on the straw tube that goes on top. I would attach pictures but I'm not allowed. Thanks for the info.",
+      "gold": "equipment",
+      "predicted": "ingredient"
+    }
+  ]
+}

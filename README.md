@@ -270,18 +270,23 @@ Posts were collected with a Claude-written script from r/AskCulinary's public se
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.433 | 0.300 | -0.133 |
+| Macro F1 | 0.354 | 0.115 | -0.239 |
+| F1 — `equipment` | 0.000 | 0.000 | +0.000 |
+| F1 — `ingredient` | 0.636 | 0.000 | -0.636 |
+| F1 — `recipe_troubleshooting` | 0.400 | 0.000 | -0.400 |
+| F1 — `technique` | 0.381 | 0.462 | +0.081 |
 
 **What I predicted before I looked:**
 <!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
      prediction made afterwards isn't one. -->
 
+     I predict that my trained model will outperform the zero-shot baseline on overall accuracy because it has been trained on examples from my dataset, although it may still struggle to distinguish between similar labels.
+
 **What the gap actually means:**
 <!-- If the baseline matched your trained model, your fine-tuning added
      nothing — and that is a real finding, not a failure. Say it plainly. -->
+     The zero-shot (no training) baseline performed better than the trained model on overall accuracy (0.433 vs. 0.300) and macro F1 (0.354 vs. 0.115). The trained model performed better only on the technique F1 score, while both models had an equipment F1 score of 0.000. This suggests that training on my labeled dataset did not improve overall performance, and further investigation is needed to understand the errors.
 
 
 
