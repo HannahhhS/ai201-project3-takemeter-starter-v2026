@@ -391,7 +391,12 @@ model. Your agreement report is the thing that can tell you which.
      data/staff_taxonomy.md, not your own — so every argument below is made
      from those definitions and those decision rules. -->
 
-**Agreement rate:** ___ / 30 = ___%
+**Agreement rate:** _30__ / 30 = _100__%
+
+I labeled all 30 staff posts using the staff taxonomy before comparing my labels with the staff labels. I achieved **100% agreement (30 out of 30 posts)**.
+
+There were no disagreements to adjudicate, so I did not need to classify any cases into the three disagreement categories. The set felt relatively straightforward to label because the taxonomy's decision rules clearly distinguished evidence-based arguments (`analysis`), unsupported opinions (`hot_take`), and personal reactions to recent events (`reaction`). However, matching the staff labels on this set does not necessarily mean the rules will be equally clear for every post; more ambiguous examples could reveal gaps in the definitions.
+
 
 <!-- Nobody grades this number. A 60% who argues every disagreement from the
      stated rules beats a 95% who wrote "staff was right" nine times. Several
