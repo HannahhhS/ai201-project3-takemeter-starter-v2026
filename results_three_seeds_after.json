@@ -1,0 +1,209 @@
+[
+  {
+    "seed": 42,
+    "n_test": 30,
+    "accuracy": 0.5666666666666667,
+    "f1_macro": 0.5665873015873015,
+    "per_label": {
+      "technique": {
+        "precision": 0.4375,
+        "recall": 0.7777777777777778,
+        "f1": 0.56,
+        "support": 9
+      },
+      "recipe_troubleshooting": {
+        "precision": 0.42857142857142855,
+        "recall": 0.42857142857142855,
+        "f1": 0.42857142857142855,
+        "support": 7
+      },
+      "equipment": {
+        "precision": 1.0,
+        "recall": 0.7142857142857143,
+        "f1": 0.8333333333333334,
+        "support": 7
+      },
+      "ingredient": {
+        "precision": 1.0,
+        "recall": 0.2857142857142857,
+        "f1": 0.4444444444444444,
+        "support": 7
+      }
+    },
+    "confusion": {
+      "technique": {
+        "technique": 7,
+        "recipe_troubleshooting": 2,
+        "equipment": 0,
+        "ingredient": 0
+      },
+      "recipe_troubleshooting": {
+        "technique": 4,
+        "recipe_troubleshooting": 3,
+        "equipment": 0,
+        "ingredient": 0
+      },
+      "equipment": {
+        "technique": 2,
+        "recipe_troubleshooting": 0,
+        "equipment": 5,
+        "ingredient": 0
+      },
+      "ingredient": {
+        "technique": 3,
+        "recipe_troubleshooting": 2,
+        "equipment": 0,
+        "ingredient": 2
+      }
+    },
+    "confidence": {
+      "mean_when_right": 0.45898887515068054,
+      "mean_when_wrong": 0.3757273256778717,
+      "accuracy_most_confident_third": 0.9,
+      "accuracy_least_confident_third": 0.4,
+      "n_per_third": 10
+    },
+    "device": "cpu",
+    "device_name": "CPU",
+    "torch_version": "2.14.1+cpu",
+    "max_length": 128
+  },
+  {
+    "seed": 7,
+    "n_test": 30,
+    "accuracy": 0.6333333333333333,
+    "f1_macro": 0.6347285067873303,
+    "per_label": {
+      "technique": {
+        "precision": 0.45454545454545453,
+        "recall": 0.5555555555555556,
+        "f1": 0.5,
+        "support": 9
+      },
+      "recipe_troubleshooting": {
+        "precision": 0.6666666666666666,
+        "recall": 0.5714285714285714,
+        "f1": 0.6153846153846154,
+        "support": 7
+      },
+      "equipment": {
+        "precision": 0.7,
+        "recall": 1.0,
+        "f1": 0.8235294117647058,
+        "support": 7
+      },
+      "ingredient": {
+        "precision": 1.0,
+        "recall": 0.42857142857142855,
+        "f1": 0.6,
+        "support": 7
+      }
+    },
+    "confusion": {
+      "technique": {
+        "technique": 5,
+        "recipe_troubleshooting": 1,
+        "equipment": 3,
+        "ingredient": 0
+      },
+      "recipe_troubleshooting": {
+        "technique": 3,
+        "recipe_troubleshooting": 4,
+        "equipment": 0,
+        "ingredient": 0
+      },
+      "equipment": {
+        "technique": 0,
+        "recipe_troubleshooting": 0,
+        "equipment": 7,
+        "ingredient": 0
+      },
+      "ingredient": {
+        "technique": 3,
+        "recipe_troubleshooting": 1,
+        "equipment": 0,
+        "ingredient": 3
+      }
+    },
+    "confidence": {
+      "mean_when_right": 0.44409140944480896,
+      "mean_when_wrong": 0.3841395676136017,
+      "accuracy_most_confident_third": 0.8,
+      "accuracy_least_confident_third": 0.6,
+      "n_per_third": 10
+    },
+    "device": "cpu",
+    "device_name": "CPU",
+    "torch_version": "2.14.1+cpu",
+    "max_length": 128
+  },
+  {
+    "seed": 2024,
+    "n_test": 30,
+    "accuracy": 0.5333333333333333,
+    "f1_macro": 0.48599033816425125,
+    "per_label": {
+      "technique": {
+        "precision": 0.42857142857142855,
+        "recall": 0.6666666666666666,
+        "f1": 0.5217391304347826,
+        "support": 9
+      },
+      "recipe_troubleshooting": {
+        "precision": 0.3333333333333333,
+        "recall": 0.14285714285714285,
+        "f1": 0.2,
+        "support": 7
+      },
+      "equipment": {
+        "precision": 0.6363636363636364,
+        "recall": 1.0,
+        "f1": 0.7777777777777778,
+        "support": 7
+      },
+      "ingredient": {
+        "precision": 1.0,
+        "recall": 0.2857142857142857,
+        "f1": 0.4444444444444444,
+        "support": 7
+      }
+    },
+    "confusion": {
+      "technique": {
+        "technique": 6,
+        "recipe_troubleshooting": 1,
+        "equipment": 2,
+        "ingredient": 0
+      },
+      "recipe_troubleshooting": {
+        "technique": 4,
+        "recipe_troubleshooting": 1,
+        "equipment": 2,
+        "ingredient": 0
+      },
+      "equipment": {
+        "technique": 0,
+        "recipe_troubleshooting": 0,
+        "equipment": 7,
+        "ingredient": 0
+      },
+      "ingredient": {
+        "technique": 4,
+        "recipe_troubleshooting": 1,
+        "equipment": 0,
+        "ingredient": 2
+      }
+    },
+    "confidence": {
+      "mean_when_right": 0.5199734568595886,
+      "mean_when_wrong": 0.4340323805809021,
+      "accuracy_most_confident_third": 0.8,
+      "accuracy_least_confident_third": 0.4,
+      "n_per_third": 10
+    },
+    "device": "cpu",
+    "device_name": "CPU",
+    "torch_version": "2.14.1+cpu",
+    "max_length": 128
+  }
+]

@@ -256,6 +256,47 @@ Write that down now — next unit it's a diagnosis, not a surprise.
 
 Posts were collected with a Claude-written script from r/AskCulinary's public search RSS, 50 per post flair. Flairs were used only to balance collection, not as labels. I labelled 20 posts cold (marked `cold` in the note column). Claude pre-labelled the other 180 using my definitions — first under my original decision rule, then again under the revised one — and I read and corrected every one (marked `pre-labelled by AI (Claude), checked`).
 
+### Unit 6
+
+**Moment 3 — Spotting the pattern in my errors**
+
+- *What I asked for:* I asked Claude to fill in my run log from
+  `results_three_seeds_before.json` and my original criteria, then to propose
+  diagnoses for each miss.
+- *What came back:* Claude pointed out a pattern I hadn't put into words: the model
+  predicted `technique` for 30/30, 30/30 and 28/30 test posts, so 0.300 accuracy is
+  exactly what always guessing `technique` scores. It also noted that mean confidence
+  was about 0.31 whether right or wrong, near the 0.25 you'd get from spreading evenly
+  across four labels, and that 3 epochs on ~140 training posts is only ~27 updates.
+  It suggested this pointed at training rather than my labels.
+- *What I changed:* I had Claude show every edit before making it, and I changed the
+  framing. I required the training cause to be written as a hypothesis, not a
+  confirmed cause, with Milestone 5 as the test. I chose to count the staff agreement
+  check as a substitute measure for criterion 4. I made sure it says plainly that it
+  used a different taxonomy and isn't direct evidence about my cooking labels. I also
+  rewrote the criterion 2 explanation and the wording about confidence. I reviewed
+  the full diff before committing.
+
+**Moment 4 — Choosing the improvement**
+
+- *What I asked for:* I asked what improvement to make for Milestone 5.
+- *What came back:* Claude recommended raising `EPOCHS` from 3 to 10 and changing
+  nothing else. Its reasoning was that my diagnosis pointed at training, my agreement
+  check found no boundary to relabel, and my smallest labels weren't much smaller than
+  the others. It suggested epochs over learning rate because 2e-5 is a typical value.
+- *What I changed:* I made the change and ran the three-seed retrain myself. Claude
+  drafted The Improvement section, including the after run log and "Did it help",
+  from my retrain results; I reviewed and edited the drafts.
+
+**Staff-set disclosure:**
+
+I labeled all 30 staff posts myself under `data/staff_taxonomy.md`, with no AI
+labeling. Claude only copied the post text verbatim from `staff_posts.csv` into
+`my_staff_labels.csv`, so the two files would match on text. Later it renamed the
+TF's answer-key file so `agreement.py` could find it, without opening it. It also
+fixed my `hot take` labels to `hot_take`, a spelling difference that was causing
+false disagreements. It never saw the staff labels before my 30 were saved.
+
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
      Don't fill these in during unit 5.
@@ -482,6 +523,8 @@ There were no disagreements to adjudicate, so I did not need to classify any cas
 
 **What the pattern in my disagreements tells me:**
 
+There were no disagreements to adjudicate: I matched the staff labels on all 30 posts, so the blocks above have nothing to fill. The lack of disagreements suggests I applied a written taxonomy's rules consistently, but it doesn't test the hardest boundary in my own taxonomy (`technique` vs. `recipe_troubleshooting`).
+
 
 
 ---
@@ -490,19 +533,98 @@ There were no disagreements to adjudicate, so I did not need to classify any cas
 
 **What I changed:**
 
+One training setting: `EPOCHS` went from 3 to 10 (notebook section 2). Everything
+else stayed the same — learning rate 2e-5, batch size 16, the same base model, the
+same 200 labels, and the same three seeds (42, 7, 2024), so the before and after
+runs use identical splits. I made no other changes, so any difference between the
+two run logs comes from training length alone.
+
 **Which diagnosis pointed at it:**
+
+My Verdicts and Diagnoses section traced all three misses (criteria 1, 2 and 5) to
+one pattern: the model predicted `technique` for 30/30, 30/30 and 28/30 test posts,
+and its mean confidence was about 0.31 whether right or wrong, close to the 0.25
+equal-probability reference for four labels. My hypothesis was that training did not
+move the model far enough from its starting point to separate the labels.
+
+With about 140 training posts and a batch size of 16, each epoch is roughly 9
+updates, so the original 3 epochs gave the model only about 27 updates in total.
+Raising epochs to 10 (about 90 updates) tests the hypothesis directly.
+
+I ruled out the other two options because the evidence didn't point at them:
+- **Relabeling a boundary:** my agreement check found no disagreements (30/30, on the
+  staff taxonomy as a substitute measure), and the model never predicted three of my
+  labels, so there is no confused boundary in the matrix to fix.
+- **Adding examples to the thinnest label:** `ingredient` (44) and
+  `recipe_troubleshooting` (45) are close in size to `equipment` (50), and the model
+  ignored all three non-`technique` labels, not just the smallest.
+
+I chose epochs over learning rate because 2e-5 is a typical value for fine-tuning
+this kind of model, and too few updates is the simpler explanation to test first.
 
 ### Run Log — After
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.70 | 0.567 | 0.633 | 0.533 | MISSED |
+| 2. Every label F1 | ≥ 0.50 | 0.429 (lowest) | 0.500 (lowest) | 0.200 (lowest) | MISSED |
+| 3. Class balance — largest label share | ≤ 60% | 30.5% | 30.5% | 30.5% | MET |
+| 4. Labeling consistency — another person on my taxonomy | ≥ 80% | 100% (substitute, not per-seed) | 100% (substitute, not per-seed) | 100% (substitute, not per-seed) | MET (substitute measure) |
+| 5. Accuracy of most confident third | ≥ 0.75 | 0.90 | 0.80 | 0.80 | MET |
+
+Seed results after the change: (device - cpu)
+
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.567 | 0.633 | 0.533 | 0.100 |
+| Macro F1 | 0.567 | 0.635 | 0.486 | 0.149 |
+| F1 — `technique` | 0.560 | 0.500 | 0.522 | 0.060 |
+| F1 — `recipe_troubleshooting` | 0.429 | 0.615 | 0.200 | 0.415 |
+| F1 — `equipment` | 0.833 | 0.824 | 0.778 | 0.056 |
+| F1 — `ingredient` | 0.444 | 0.600 | 0.444 | 0.156 |
+
+Confusion matrix after the change (seed 42):
+
+| true \ predicted | technique | recipe_troubleshooting | equipment | ingredient |
+|---|---|---|---|---|
+| **technique** | 7 | 2 | 0 | 0 |
+| **recipe_troubleshooting** | 4 | 3 | 0 | 0 |
+| **equipment** | 2 | 0 | 5 | 0 |
+| **ingredient** | 3 | 2 | 0 | 2 |
 
 **Did it help, and how do I know:**
+
+Yes. It helped on every measure, though it didn't reach my accuracy or per-label targets.
+
+- **Accuracy** rose on every seed: from 0.300 / 0.300 / 0.367 (mean 0.322) to
+  0.567 / 0.633 / 0.533 (mean 0.578). Every seed now beats the 0.300 you'd get by
+  always guessing `technique`, and every seed beats the zero-shot baseline's 0.433.
+- **The collapse is gone.** Before, the model predicted `technique` for 30, 30 and 28
+  of 30 posts. Now it predicts all four labels on every seed (`technique` 16, 11 and
+  14 times). `ingredient` and `recipe_troubleshooting`, which scored 0.000 on every
+  seed before, now score between 0.200 and 0.615.
+- **Confidence now carries signal.** The gap between mean confidence when right and
+  when wrong grew from under 0.013 to 0.06–0.09, and criterion 5 went from MISSED
+  (0.60 / 0.50 / 0.50) to MET (0.90 / 0.80 / 0.80).
+
+Because epochs was the only thing I changed, with the same data and the same three
+seeds, I can attribute the improvement to it. That supports my hypothesis that the
+original run was undertrained. It doesn't prove 10 epochs is the right number.
+
+Still missed:
+- **Criterion 1:** accuracy is still under 0.70 on all three seeds.
+- **Criterion 2:** seed 7 actually met it (lowest F1 exactly 0.500), but seeds 42
+  and 2024 didn't. `recipe_troubleshooting` was the weakest label, swinging from
+  0.200 to 0.615.
+- **Accuracy spread:** it's now 0.100, right at the ten-point line Milestone 2 warns
+  about, so a 30-post test split is still a noisy measure.
+
+What the new matrix shows that the old one couldn't: with the model now predicting
+every label, the remaining errors land on `recipe_troubleshooting` vs. `technique`
+(4 one way, 2 the other on seed 42). That's the boundary I named as my hardest in my
+Label Taxonomy. `ingredient` is the other weak spot: its precision is 1.00 on every
+seed but its recall is only 0.29–0.43. The model rarely guesses `ingredient`, so
+most real ingredient posts go to `technique` or `recipe_troubleshooting`.
 
 <!-- If it didn't, say so. Relabelling that didn't help is a genuinely
      interesting result and earns full credit. -->
@@ -515,11 +637,38 @@ There were no disagreements to adjudicate, so I did not need to classify any cas
 
 <!-- For each criterion still missed: what you'd do, and why you stopped. -->
 
+**Criterion 1 — Overall accuracy (still MISSED: 0.567 / 0.633 / 0.533 vs. ≥ 0.70).**
+What I'd do: test my hardest boundary, `technique` vs. `recipe_troubleshooting`,
+directly. I'd have another person label 30 of my cooking posts under my own
+definitions, which is the measurement my original criterion 4 asked for and the
+staff check couldn't give. If we disagree mostly on that pair, I'd rewrite the
+decision rule and relabel only that boundary. If we agree, the pair is genuinely
+hard, and I'd add examples near the boundary instead.
+Why I stopped: Milestone 5 allows one measured change, and I used it on epochs
+because that's what my diagnosis pointed at. Making a second change in the same
+run would have made it impossible to tell which one helped.
 
+**Criterion 2 — Every label F1 (still MISSED: lowest 0.429 / 0.500 / 0.200 vs. ≥ 0.50).**
+What I'd do: the two weak labels fail differently. `recipe_troubleshooting` swings
+from 0.200 to 0.615 across seeds and is tangled with `technique`, so the same
+boundary check as criterion 1 applies. `ingredient` has precision 1.00 but recall
+0.29–0.43, so the model under-predicts it; adding about 30 more `ingredient`
+examples is the fix I'd try for that. I'd also want a larger test split, because
+with only 7 posts per label one post moves F1 a lot.
+Why I stopped: same reason as above, one change per run. I'd rather report one
+change I can measure than two I can't separate.
 
 **The gap between what I meant my labels to capture and what the model
 learned:**
 <!-- Two sentences. Your confusion matrix is the evidence. -->
+
+I meant my labels to capture the primary kind of help a post asks for, but the
+seed 42 matrix suggests the model leans on surface form instead: 4 of 7
+`recipe_troubleshooting` posts and 3 of 7 `ingredient` posts were called
+`technique`, as if any post asking "how do I…" counts as technique. `equipment`,
+whose posts likely name distinctive objects like pans and ovens, is the one label
+it learned well (F1 0.778–0.833), which fits the idea that it learned vocabulary
+more than intent.
 
 
 
