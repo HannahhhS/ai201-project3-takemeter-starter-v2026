@@ -80,6 +80,17 @@ If another person independently labeled the same 30 randomly selected posts usin
 
 **Why this target:** Several posts mention multiple topics, so my primary-problem rule needs to be clear enough for another person to apply consistently. Checking 30 posts provides a practical way to identify confusing boundaries without reviewing the entire dataset twice. The ingredient and recipe_troubleshooting labels can overlap, so this target reflects my goal of writing clear enough definitions for another person to apply them consistently.
 
+> **Revised in unit 6:** Measured instead as my agreement with staff labels on the
+> 30-post staff set, labeled under the staff taxonomy (`data/staff_taxonomy.md`).
+> Target unchanged: at least 80%.
+>
+> **Why revised:** The original couldn't be measured — no one else labeled posts
+> under my cooking taxonomy, so there was nothing to compare against. The staff
+> check is the closest available measure of whether I apply written definitions
+> consistently. It uses a different taxonomy, so it is a substitute measure, not
+> direct evidence of consistency in my own labels, and it did not test my hardest
+> boundary (`ingredient` vs. `recipe_troubleshooting`).
+
 ---
 
 ## 5. Confidence

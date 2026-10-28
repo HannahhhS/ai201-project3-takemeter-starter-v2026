@@ -319,11 +319,11 @@ Accuracy varied from 0.300 to 0.367, a spread of 0.067 (6.7 percentage points). 
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Overall accuracy | ≥ 0.70 | 0.300 | 0.300 | 0.367 | MISSED |
+| 2. Every label F1 | ≥ 0.50 | 0.000 (lowest) | 0.000 (lowest) | 0.000 (lowest) | MISSED |
+| 3. Class balance — largest label share | ≤ 60% | 30.5% | 30.5% | 30.5% | MET |
+| 4. Labeling consistency — another person on my taxonomy | ≥ 80% | 100% (substitute, not per-seed) | 100% (substitute, not per-seed) | 100% (substitute, not per-seed) | MET (substitute measure) |
+| 5. Accuracy of most confident third | ≥ 0.75 | 0.60 | 0.50 | 0.50 | MISSED |
 
 ### Confusion matrix
 
@@ -362,11 +362,11 @@ model. Your agreement report is the thing that can tell you which.
 
 | # | Criterion | Target | Verdict | How I decided |
 |---|---|---|---|---|
-| 1 |  |  |  |  |
-| 2 |  |  |  |  |
-| 3 |  |  |  |  |
-| 4 |  |  |  |  |
-| 5 |  |  |  |  |
+| 1 | Overall accuracy | ≥ 0.70 on all three seeds | MISSED | Seeds scored 0.300, 0.300, 0.367. None reached 0.70. |
+| 2 | Every label F1 | ≥ 0.50 for each label on all three seeds | MISSED | The criterion requires every label to achieve F1 ≥ 0.50 on all three seeds. `recipe_troubleshooting` and `ingredient` scored 0.000 on every seed, so the criterion was not met. |
+| 3 | Class balance | No label above 60% of the dataset | MET | Largest label is `technique`, 61/200 = 30.5%. This is a property of the dataset, so it's the same for all seeds. |
+| 4 | Labeling consistency | ≥ 80% agreement | MET (substitute measure) | The original couldn't be measured. On the substitute (staff taxonomy, 30 posts) I agreed on 30/30 = 100%. This is indirect evidence about my own taxonomy, not direct. |
+| 5 | Accuracy of most confident third | ≥ 0.75 on all three seeds | MISSED | Seeds scored 0.60, 0.50, 0.50. None reached 0.75. |
 
 **Diagnoses**
 
@@ -378,6 +378,50 @@ model. Your agreement report is the thing that can tell you which.
      ⚠️ Use your agreement report as evidence. It is the only instrument you
      have that can tell a LABELLING problem from a MODEL problem, and this
      section is graded on whether you used it that way. -->
+
+**The pattern behind all three misses.** On every seed the model predicted
+`technique` for almost every post: 30/30 test posts on seeds 42 and 7, and 28/30
+on seed 2024. Nine of the 30 test posts are truly `technique`, so 0.300 is exactly
+the accuracy of always guessing `technique`. The model collapsed onto one label
+rather than confusing particular pairs.
+
+**Criterion 1 — Overall accuracy (MISSED).**
+Likely cause (hypothesis, not confirmed): training did not move the model far
+enough from its starting point to separate the labels, which points to a training
+setting such as too few epochs or too low a learning rate.
+Evidence:
+- The model's mean confidence is about 0.31 whether it is right or wrong. These
+  confidence values are close to 0.25, the equal-probability reference for four
+  labels, which is consistent with weak separation between classes.
+- The zero-shot baseline reached 0.433 with no training on my data, so the task is
+  not out of reach from the label definitions alone.
+
+Causes I can mostly rule out:
+- Too few examples: my labels range from 44 to 61 posts each, fairly balanced.
+- Inconsistent labeling: my 30/30 staff agreement makes this less likely, but that
+  check used a different taxonomy, so it's indirect evidence only.
+
+What would confirm it: I haven't checked the training loss or tried a different
+setting. Milestone 5's retrain is the test of this hypothesis.
+
+**Criterion 2 — Every label F1 (MISSED).**
+Likely cause: the same collapse. `ingredient` and `recipe_troubleshooting` score
+0.000 because the model never predicted either one on any seed. `equipment`'s
+0.444 on seed 2024 comes from the only two non-`technique` predictions it made.
+Evidence against too few examples: `ingredient` (44) and `recipe_troubleshooting`
+(45) are only slightly smaller than `equipment` (50).
+What I can't tell yet: whether `ingredient` vs. `recipe_troubleshooting` is a
+genuinely hard pair. The matrix shows no confusion between them only because every
+post went to `technique`, and my agreement check didn't test this boundary. That
+question stays open until the model predicts these labels at all.
+
+**Criterion 5 — Confidence (MISSED).**
+Likely cause: the confidence scores carry little signal because the model barely
+separated the labels. Mean confidence when right versus wrong differs by less than
+0.013 on every seed (0.315 vs. 0.303, 0.306 vs. 0.303, 0.309 vs. 0.305). Ranking
+predictions into thirds is sorting very small differences.
+This depends on the same training hypothesis as criterion 1: if a retrain produces
+a model that actually separates labels, confidence should become more meaningful.
 
 
 
